@@ -119,24 +119,20 @@
                     todoTempList.push(todoItems[i]);
                 } else {
 
-                    var x = todoItems[i].taskTitle;
-                    var y = todoItems[i].taskDescription;
-                    var z = todoItems[i].taskDeadline;
-
                     new_item_formElement.innerHTML = `
                                                         <h1 id="form_head">Edit Task</h1>
 
                                                         <div class="form-elements">
                                                             <label for="taskTitle_Input" class="design">Task Title</label>
-                                                            <input id="taskTitle_Input" class="design" type="text" value="${x}">
+                                                            <input id="taskTitle_Input" class="design" type="text" value="${todoItems[i].taskTitle}">
                                                         </div>
                                                         <div class="form-elements">
                                                             <label for="taskDescription_Input" class="design">Task Description</label>
-                                                            <input id="taskDescription_Input" class="design" type="text" value="${y}">
+                                                            <input id="taskDescription_Input" class="design" type="text" value="${todoItems[i].taskDescription}">
                                                         </div>
                                                         <div class="form-elements">
                                                             <label for="taskDeadline_Input" class="design">Task Deadline</label>
-                                                            <input id="taskDeadline_Input" class="design" type="date" value="${z}">
+                                                            <input id="taskDeadline_Input" class="design" type="date" value="${todoItems[i].taskDeadline}">
                                                         </div> 
                                                     `;
 
