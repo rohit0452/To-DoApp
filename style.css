@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    background-color: whitesmoke;
+    font-family: Arial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#app-head {
+    background-color: #333333;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+#container {
+    padding: 40px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo_list {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.todo_item {
+    width: 90%;
+    background-color: white;
+    padding: 20px;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s;
+}
+
+.task_title {
+    font-size: large;
+}
+
+.task_description {
+    font-size: medium;
+}
+
+.task_deadline {
+    font-size: small;
+}
+
+.item_layout {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+
+/* .todo_item :hover {
+    padding: 30px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+} */
+
+#new-item-form {
+    text-align: center;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+#form-head {
+    margin-bottom: 50px;
+}
+
+.form-elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 5px;
+}
+
+.design {
+    padding: 15px;
+    width: 94%;
+    margin: 5px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+input {
+    padding: 10px;
+    border: 0.5px solid #AAAAAA;
+    border-radius: 5px;
+}
+
+.add_btn {
+    width: 50%;
+    margin: 15px auto 40px;
+    padding: 15px 10px;
+    background-color: #333333;
+    color: white;
+    font-size: large;
+    font-weight: 500;
+    border: 0;
+    border-radius: 8px;
+}
+
+.add_btn:hover {
+    cursor: pointer;
+    background-color: turquoise;
+    color: black;
+    font-weight: 600;
+    padding: 20px 10px;
+}
+
+.del_btn {
+    text-decoration: none;
+    color: tomato;
+    margin-right: 50px;
+    margin-left: 30px;
+}
+
+.edit_btn {
+    text-decoration: none;
+    color: green;
+}

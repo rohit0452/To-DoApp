@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-DO App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1 id="app-head">My TO-DO List</h1>
+
+    <div id="container">
+        <form id="new-item-form">
+            <h1 id="form-head">Add New Task</h1>
+
+            <div class="form-elements">
+                <label for="taskTitle_Input" class="design">Task Title</label>
+                <input id="taskTitle_Input" class="design" type="text" placeholder="Task Title">
+            </div>
+            <div class="form-elements">
+                <label for="taskDescription_Input" class="design">Task Description</label>
+                <input id="taskDescription_Input" class="design" type="text" placeholder="Task Description">
+            </div>
+            <div class="form-elements">
+                <label for="taskDeadline_Input" class="design">Task Deadline</label>
+                <input id="taskDeadline_Input" class="design" type="date" placeholder="Task Deadline">
+            </div>
+
+        </form>
+
+        <button class="add_btn" onclick="addTask()"> Add Task </button>
+
+        <div id="todo_list_Element" class="todo_list">
+
+        </div>
+    </div>
+
+    <script>
+        //reffering HTML elements
+        var todo_listElement = document.getElementById("todo_list_Element");
+        var new_item_formElement = document.getElementById("new-item-form");
+        var taskTitle_InputElement = document.getElementById("taskTitle_Input");
+        var taskDescription_InputElement = document.getElementById("taskDescription_Input");
+        var taskDeadline_InputElement = document.getElementById("taskDeadline_Input");
+
+        var todoItems = [];
+
+        function addTask() {
+            // retrive the value of input elements
+            var taskTitle = taskTitle_InputElement.value;
+            var taskDescription = taskDescription_InputElement.value;
+            var taskDeadline = taskDeadline_InputElement.value;
+
+            var new_Task = {
+                taskTitle: taskTitle,
+                taskDescription: taskDescription,
+                taskDeadline: taskDeadline
+            };
+
+            todoItems.push(new_Task);
+
+            //print the task on screen or call the rendering loop
+            render();
+
+            taskTitle_InputElement.value = " ";
+            taskDescription_InputElement.value = " ";
+            taskDeadline_InputElement.value = " ";
+        }
+
+        function render() {
+            var listHTML = "";
+
+            //loop for accessing the value from todoItems list
+            for (var i = 0; i < todoItems.length; i++) {
+                listHTML += `<div class="todo_item">
+                                <div class="task_title item_layout">${todoItems[i].taskTitle}</div>
+                                <div class="task_description item_layout">${todoItems[i].taskDescription}</div>
+                                <div class="task_deadline item_layout">${todoItems[i].taskDeadline}</div>
+                                <a href="#" class="del_btn" onclick="deleteTask(${i})"> Delete</a>
+                                <a href="#" class="edit_btn" onclick="editTask(${i})">Edit</a>
+                            </div>`;
+            }
+
+            todo_listElement.innerHTML = listHTML;
+        }
+
+        function deleteTask(index) {
+            var todoTempList = [];
+
+            for (var i = 0; i < todoItems.length; i++) {
+                if (i != index) {
+                    todoTempList.push(todoItems[i]);
+                }
+            }
+
+            todoItems = todoTempList;
+            render();
+        }
+    </script>
+</body>
+
+</html>
