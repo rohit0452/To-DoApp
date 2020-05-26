@@ -14,7 +14,7 @@
 
     <div id="container">
         <form id="new-item-form">
-            <h1 id="form-head">Add New Task</h1>
+            <h1 id="form_head">Add New Task</h1>
 
             <div class="form-elements">
                 <label for="taskTitle_Input" class="design">Task Title</label>
@@ -31,8 +31,10 @@
 
         </form>
 
-        <button class="add_btn" onclick="addTask()"> Add Task </button>
 
+        <div id="edit">
+            <button class="add_btn" onclick="addTask()"> Add Task </button>
+        </div>
         <div id="todo_list_Element" class="todo_list">
 
         </div>
@@ -42,17 +44,24 @@
         //reffering HTML elements
         var todo_listElement = document.getElementById("todo_list_Element");
         var new_item_formElement = document.getElementById("new-item-form");
-        var taskTitle_InputElement = document.getElementById("taskTitle_Input");
-        var taskDescription_InputElement = document.getElementById("taskDescription_Input");
-        var taskDeadline_InputElement = document.getElementById("taskDeadline_Input");
+        var editElement = document.getElementById("edit");
+
 
         var todoItems = [];
 
         function addTask() {
+            // reffering input elements
+            var taskTitle_InputElement = document.getElementById("taskTitle_Input");
+            var taskDescription_InputElement = document.getElementById("taskDescription_Input");
+            var taskDeadline_InputElement = document.getElementById("taskDeadline_Input");
             // retrive the value of input elements
+            console.log("addTask Called");
             var taskTitle = taskTitle_InputElement.value;
+            console.log(taskTitle);
             var taskDescription = taskDescription_InputElement.value;
+            console.log(taskDescription);
             var taskDeadline = taskDeadline_InputElement.value;
+            console.log(taskDeadline);
 
             var new_Task = {
                 taskTitle: taskTitle,
@@ -78,9 +87,11 @@
                 listHTML += `<div class="todo_item">
                                 <div class="task_title item_layout">${todoItems[i].taskTitle}</div>
                                 <div class="task_description item_layout">${todoItems[i].taskDescription}</div>
-                                <div class="task_deadline item_layout">${todoItems[i].taskDeadline}</div>
-                                <a href="#" class="del_btn" onclick="deleteTask(${i})"> Delete</a>
-                                <a href="#" class="edit_btn" onclick="editTask(${i})">Edit</a>
+                                <div class="task_deadline item_layout">Deadline : ${todoItems[i].taskDeadline}</div>
+                                <div class = "anchor_button">
+                                    <a href="#" class="del_btn" onclick="deleteTask(${i})"> Delete</a>
+                                    <a href="#" class="edit_btn" onclick="editTask(${i})">Edit</a>
+                                </div>
                             </div>`;
             }
 
@@ -98,6 +109,62 @@
 
             todoItems = todoTempList;
             render();
+        }
+
+        function editTask(index) {
+            var todoTempList = [];
+
+            for (var i = 0; i < todoItems.length; i++) {
+                if (i != index) {
+                    todoTempList.push(todoItems[i]);
+                } else {
+
+                    var x = todoItems[i].taskTitle;
+                    var y = todoItems[i].taskDescription;
+                    var z = todoItems[i].taskDeadline;
+
+                    new_item_formElement.innerHTML = `
+                                                        <h1 id="form_head">Edit Task</h1>
+
+                                                        <div class="form-elements">
+                                                            <label for="taskTitle_Input" class="design">Task Title</label>
+                                                            <input id="taskTitle_Input" class="design" type="text" value="${x}">
+                                                        </div>
+                                                        <div class="form-elements">
+                                                            <label for="taskDescription_Input" class="design">Task Description</label>
+                                                            <input id="taskDescription_Input" class="design" type="text" value="${y}">
+                                                        </div>
+                                                        <div class="form-elements">
+                                                            <label for="taskDeadline_Input" class="design">Task Deadline</label>
+                                                            <input id="taskDeadline_Input" class="design" type="date" value="${z}">
+                                                        </div> 
+                                                    `;
+
+                    editElement.innerHTML = ` <button id = "button" class="add_btn" > Edit Task </button>`;
+
+                    document.getElementById("button").addEventListener("click", function() {
+
+
+                        var form_headElement = document.getElementById("form_head");
+
+                        addTask();
+
+                        editElement.innerHTML = `<button class="add_btn" onclick="addTask()"> Add Task </button>`;
+
+                        form_headElement.innerHTML = "Add New Task";
+
+                    });
+
+
+                }
+
+            }
+
+            todoItems = todoTempList;
+
+            console.log(todoItems);
+            render();
+
         }
     </script>
 </body>
