@@ -136,7 +136,8 @@ input {
 }
 
 .del_btn:hover,
-.edit_btn:hover {
+.edit_btn:hover,
+.done_btn:hover {
     font-size: x-large;
 }
 
@@ -144,6 +145,12 @@ input {
     text-decoration: none;
     color: darkgreen;
     font-size: large;
+}
+
+.done_btn {
+    text-decoration: none;
+    font-size: large;
+    color: #551A8B;
 }
 
 .anchor_button {
@@ -203,7 +210,8 @@ input {
         align-items: center;
         justify-content: space-between;
     }
-    .del_btn {
+    .del_btn,
+    .done_btn {
         margin-bottom: 16px;
     }
 }
